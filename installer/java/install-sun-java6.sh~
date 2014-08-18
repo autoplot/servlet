@@ -1,0 +1,28 @@
+#!/bin/bash
+# Install 64-bit Sun JDK and JRE on linux
+
+#Simple method that works on Ubuntu 10.04
+#sudo add-apt-repository "deb http://archive.canonical.com/ lucid partner"
+#sudo apt-get update
+#sudo apt-get install sun-java6-jdk sun-java6-jre sun-java6-bin sun-java6-plugin
+
+# Works on Ubuntu 10.04 and later.  Shoud add an "update alternatives" instead of doing ln -s
+# Need to log-in to Oracle site to download Java 6
+VER=38 JRE
+chmod u+x jre-6u$VER-linux-x64.bin
+sudo ./jre-6u$VER-linux-x64.bin
+sudo mkdir -p /usr/lib/jvm
+sudo mv jre1.6.0_$VER /usr/lib/jvm/
+ln -s /usr/lib/jvm/jre1.6.0_$VER /usr/lib/jvm/java-6-sun/jre/
+ln -s /usr/lib/jvm/jre1.6.0_$VER/ /usr/lib/jvm/
+ln -s /usr/lib/jvm/jre1.6.0_$VER/bin/java /usr/bin/java
+ln -s /usr/lib/jvm/jre1.6.0_$VER/bin/javac /usr/bin/javac
+ln -s /usr/lib/jvm/jre1.6.0_$VER/bin/javaws /usr/bin/javaws
+
+VER=37 JDK
+chmod u+x jdk-6u$VER-linux-x64.bin
+sudo ./jdk-6u$VER-linux-x64.bin
+sudo mkdir -p /usr/lib/jvm
+sudo mv jdk1.6.0_$VER /usr/lib/jvm/
+ln -s /usr/lib/jvm/jdk1.6.0_$VER /usr/lib/jvm/java-6-sun/jdk
+ln -s /usr/lib/jvm/jdk1.6.0_$VER /usr/lib/jvm/java-6-sun/jdk
